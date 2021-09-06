@@ -75,7 +75,7 @@ func newDevice(remoteAddr string, mac net.HardwareAddr, timeout int, devChar dev
 	resp, err := d.serverRequest(authenticatePayload())
 	d.close()
 	if err != nil {
-		Logger.Printf("%#v",err)
+		Logger.Printf("%#v", err)
 		return d, fmt.Errorf("error making authentication request: %v", err)
 	}
 	if resp.Type == DeviceError {
@@ -143,7 +143,6 @@ func (d *device) serverRequest(req unencryptedRequest) (Response, error) {
 	}
 
 	//Logger.Printf("Request: %#v",req)
-
 
 	encryptedReq, err := d.encryptRequest(req)
 	if err != nil {
@@ -307,18 +306,16 @@ func (d *device) readPacket() (Response, error) {
 	payload := make([]byte, len(encryptedPayload), len(encryptedPayload))
 	mode := cipher.NewCBCDecrypter(block, d.iv)
 
-
 	if len(encryptedPayload)%16 != 0 {
 
-		Logger.Printf("%#v",encryptedPayload)
-		return processedPayload,errors.New("crypto/cipher: input not full blocks")
+		Logger.Printf("%#v", encryptedPayload)
+		return processedPayload, errors.New("crypto/cipher: input not full blocks")
 	}
-
 
 	mode.CryptBlocks(payload, encryptedPayload)
 
 	command := buf[0x26]
-	Logger.Printf("Command: %#v",command)
+	Logger.Printf("Command: %#v", command)
 	header := d.requestHeader
 	if command == 0xe9 {
 		copy(d.key, payload[0x04:0x14])
@@ -505,7 +502,7 @@ func (d *device) learnRF() (Response, error) {
 				// receive a response without an error.
 				// In any case, we have a learningtimeout so we won't be looping
 				// indefinitely.
-				Logger.Printf("Learn RF Err: %#v %#v",err,resp)
+				Logger.Printf("Learn RF Err: %#v %#v", err, resp)
 				continue
 			}
 			if resp.Type == RawData {

@@ -64,26 +64,22 @@ var knownDevices = []KnownDevice{
 
 //force add a device, useful in testing for new devices, error if the same name label is used
 
-func AddKnownDevice(kd KnownDevice) error{
-
-
+func AddKnownDevice(kd KnownDevice) error {
 
 	for _, d := range knownDevices {
 
-		if(d.Name == kd.Name) {
+		if d.Name == kd.Name {
 
 			return errors.New("Unable to add device with the same Name")
-
 
 		}
 
 	}
 
-	knownDevices = append(knownDevices,kd)
+	knownDevices = append(knownDevices, kd)
 
 	return nil
 }
-
 
 func isKnownDevice(dt int) deviceCharacteristics {
 	resp := deviceCharacteristics{}
