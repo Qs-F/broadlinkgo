@@ -7,7 +7,7 @@ Broadlink golang http server api
 This api allows access to the Broadlink family of devices for IR/RM control via an http api.  There is a web portal for basic management as well.
 
 
-![Image of Home](broadlink_home.jpg?raw=true)
+![Image of Home](.github/broadlink_home.jpg?raw=true)
 
 
 ## Getting Started
@@ -60,7 +60,7 @@ A button will appear on the interface allowing you to add a device manually skip
 
 Learning is super simple, just go to /learn via the home page and you'll get prompted for what to do. 
 
-![Image of Home](broadlink_learn.jpg?raw=true)
+![Image of Home](.github/broadlink_learn.jpg?raw=true)
 
 
 
